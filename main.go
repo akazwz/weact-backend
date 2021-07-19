@@ -18,6 +18,7 @@ func main() {
 		AllowHeaders:     []string{"*"},
 	}))
 	r.POST("/file", api.FileUpload)
+	r.Static("/static-file", "./public/file")
 	err := r.Run()
 	if err != nil {
 		log.Fatal("run err", err)
