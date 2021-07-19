@@ -20,7 +20,7 @@ func FileUpload(c *gin.Context) {
 	filePre := uuid.NewV4().String()
 	newFilename := filePre + "-" + filename
 	err = c.SaveUploadedFile(file, "public/file/"+newFilename)
-	url := "/static-file/" + newFilename
+	url := "/" + newFilename
 	if err != nil {
 		log.Fatal("file save err", err)
 	}
