@@ -5,7 +5,6 @@ import (
 	uuid "github.com/satori/go.uuid"
 	"log"
 	"net/http"
-	"strings"
 )
 
 func FileUpload(c *gin.Context) {
@@ -17,14 +16,9 @@ func FileUpload(c *gin.Context) {
 		return
 	}
 	filename := file.Filename
-	extensionArr := strings.SplitAfter(filename, ".")
-	index := len(extensionArr)
-	var extension = ""
-	if index > 1 {
-		extension = extensionArr[index-1]
-	}
+
 	filePre := uuid.NewV4().String()
-	newFilename := filePre + "-" + filename + "." + extension
+	newFilename := filePre + "-" + filename
 	err = c.SaveUploadedFile(file, "public/file/"+newFilename)
 	url := "/static-file/" + newFilename
 	if err != nil {
