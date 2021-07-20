@@ -5,6 +5,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"log"
+	"net/http"
 	"weact-backend/api"
 )
 
@@ -18,6 +19,11 @@ func main() {
 		AllowHeaders:     []string{"*"},
 	}))
 	r.POST("/file", api.FileUpload)
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Hello, World!",
+		})
+	})
 	r.Static("/file", "./public/file")
 	err := r.Run()
 	if err != nil {
