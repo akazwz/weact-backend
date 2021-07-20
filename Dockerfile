@@ -6,7 +6,7 @@ COPY . .
 
 ENV GOPROXY="https://goproxy.cn,direct"
 
-RUN go mod download
+RUN go mod tidy
 
 RUN go build -o main.go
 
