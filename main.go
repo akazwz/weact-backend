@@ -25,7 +25,7 @@ func main() {
 		})
 	})
 	r.Static("/file", "./public/file")
-	err := r.Run()
+	err := r.Run(":8000")
 	if err != nil {
 		log.Fatal("run err", err)
 	}
