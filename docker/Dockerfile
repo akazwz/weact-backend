@@ -2,7 +2,7 @@ FROM golang:1.16-alpine
 
 WORKDIR /weact-backend
 
-COPY ../ /weact-backend
+COPY ../* /weact-backend
 
 RUN go mod download
 
