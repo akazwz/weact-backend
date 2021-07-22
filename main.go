@@ -2,16 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
-	"log"
-	"net/http"
-	"weact-backend/api"
+	"time"
+	"weact-backend/influxdb"
 )
 
 func main() {
 	fmt.Println("Hello,Gin")
-	r := gin.Default()
+	/*r := gin.Default()
 	r.Use(cors.New(cors.Config{
 		AllowCredentials: true,
 		AllowAllOrigins:  true,
@@ -28,5 +25,13 @@ func main() {
 	err := r.Run(":8000")
 	if err != nil {
 		log.Fatal("run err", err)
-	}
+	}*/
+	measurement := "stat"
+	tags := make(map[string]string)
+	tags["unit"] = "temperature"
+	fields := make(map[string]interface{})
+	fields["avg"] = 50
+	fields["max"] = 100
+
+	influxdb.WritePointData(measurement, tags, fields, time.Now())
 }
