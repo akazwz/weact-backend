@@ -9,3 +9,7 @@ func CreateHotSearch(c *gin.Context) {
 	hs := HotSearch{}
 	c.ShouldBindJSON(hs)
 }
+
+func WriteHotSearchToInflux() {
+
+}
